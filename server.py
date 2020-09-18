@@ -234,4 +234,4 @@ web_app.router.add_view('/mcping', handler)
 # await site.start()
 
 loop = asyncio.get_event_loop()
-web.run_app(web_app, host='localhost', port=6942) # this is blocking
+web.run_app(web_app, host='localhost', port=2304) # this is blocking
