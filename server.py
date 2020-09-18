@@ -227,11 +227,5 @@ async def handler(r):
 web_app = web.Application()
 web_app.router.add_view('/mcping', handler)
 
-# This code is none blocking
-# web_runner = web.AppRunner(web_app)
-# await web_runner.setup()
-# site = web.TCPSite(web_runner, 'localhost', 6942)
-# await site.start()
-
 loop = asyncio.get_event_loop()
 web.run_app(web_app, host='localhost', port=2304) # this is blocking
