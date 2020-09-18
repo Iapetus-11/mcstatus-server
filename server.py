@@ -27,7 +27,7 @@ default = {
     'gamemode': None # string
 }
 
-async def cleanup_args(server_str, _port=None):
+async def cleanup_args(server_str, _port=None):  # cleanup arguments given in the request
     if ':' in server_str and _port is None:
         split = server_str.split(':')
         ip = split[0]
@@ -46,7 +46,7 @@ async def cleanup_args(server_str, _port=None):
 
     return ip, port, str_port
 
-def ping_status(combined_server):
+def ping_status(combined_server):  # all je servers support this
     try:
         status = mcstatus.lookup(combined_server).status()
     except Exception:
@@ -70,7 +70,7 @@ def ping_status(combined_server):
 
     return s_dict
 
-def query_status(combined_server):
+def query_status(combined_server):  # some je and most pocketmine servers support this
     time_before = time()
 
     try:
@@ -99,7 +99,7 @@ def query_status(combined_server):
 
     return s_dict
 
-def raknet_status(ip, port):
+def raknet_status(ip, port):  # basically create a mini/shitty raknet client to check the status of BE servers
     if port is None:
         port = 19132
 
