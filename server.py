@@ -210,13 +210,11 @@ async def unified_mcping(server_str, _port=None, _ver=None):
 
 async def handler(r):
     host = r.headers.get('host')
+
     try:
         port = int(r.headers.get('port'))
     except ValueError:
         port = None
-
-    if host is None:
-        return web.Response(status=400)
 
     if port == 0:
         port = None
