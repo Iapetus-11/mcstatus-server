@@ -7,9 +7,10 @@ from mcstatus import MinecraftServer as mcstatus
 from pyraklib.protocol.UNCONNECTED_PING import UNCONNECTED_PING
 from pyraklib.protocol.UNCONNECTED_PONG import UNCONNECTED_PONG
 from time import sleep, time
+import json
 
-global loop
-global default
+with open('private.json', 'r') as private:
+    allowed_ips = json.load(private)['allowed_ips']
 
 # default / offline server
 default = {
@@ -209,9 +210,12 @@ async def unified_mcping(server_str, _port=None, _ver=None):
         return default
 
 async def handler(r):
+    if r.remote not in allowed_ips:
+        return web.Response(status=401)  # 401 unauthed
+
     host = r.query.get('host')
     if host is None:
-        return web.Response(status=400)
+        return web.Response(status=400)  # 400 bad req
 
     try:
         port = int(r.query.get('port'))
