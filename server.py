@@ -207,10 +207,6 @@ async def unified_mcping(server_str, _port=None, _ver=None):
                     if result['online'] == True:
                         return result
 
-            for task in tasks:
-                if not task.done():
-                    task.cancel()
-
         return default
 
 async def handler(r):
