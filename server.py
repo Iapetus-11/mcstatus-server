@@ -229,7 +229,7 @@ async def handler(r):
     return web.json_response(status)
 
 web_app = web.Application()
-web_app.router.add_view('/mcping', handler)
+web_app.router.add_view('/mcstatus', handler)
 
 loop = asyncio.get_event_loop()
 web.run_app(web_app, host='localhost', port=2304) # this is blocking
