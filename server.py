@@ -219,6 +219,8 @@ async def handler(r):
 
     try:
         port = int(r.query.get('port'))
+    except TypeError:
+        port = None
     except ValueError:
         port = None
 
